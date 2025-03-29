@@ -32,13 +32,16 @@ Output formats:
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Please feel free to open a new issue, wait for it to be approved, and then submit a Pull Request.
 
 1. Fork the project
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
+
+> Note:
+> Please keep in mind that the app's core code was created in record time using an AI and then polished and tweaked to compile. I'm only saying this because I can tell you in advance there are a few bad practices; feel free to improve them if you have the time.
 
 ## License
 
