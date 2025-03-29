@@ -45,4 +45,4 @@ appImage:
 npmRebuild: false
 publish:
   provider: generic
-  url: https://ImageFlow.softr.app/
+  url: https://ImageFlow.app/
