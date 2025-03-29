@@ -4,6 +4,7 @@
   import { images, imageSettings, processing, totalProgress, darkMode } from './lib/stores';
   import JSZip from 'jszip';
   import { saveAs } from 'file-saver';
+  import logo from "./assets/logo.png";
 
   let sidebarOpen = false;
 
@@ -155,7 +156,7 @@
   $: progress = Math.round($totalProgress);
 </script>
 
-<div class="flex h-screen relative overflow-hidden">
+<div class="relative flex h-screen overflow-hidden">
   <!-- Mobile sidebar backdrop -->
   {#if sidebarOpen}
     <div 
@@ -167,7 +168,7 @@
 
   <!-- Sidebar -->
   <div
-    class="fixed lg:static inset-y-0 left-0 transform lg:transform-none transition-transform duration-200"
+    class="fixed inset-y-0 left-0 transition-transform duration-200 transform lg:static lg:transform-none"
     style="z-index: 50;"
     class:translate-x-0={sidebarOpen}
     class:-translate-x-full={!sidebarOpen}
@@ -181,7 +182,7 @@
       <div class="flex justify-between items-center mb-8 bg-[--content-bg]  backdrop-blur-xl p-4 rounded-xl shadow-sm">
         <!-- Mobile menu button -->
         <button
-          class="lg:hidden p-2 rounded-lg hover:bg-gray-100/50 dark:hover:bg-gray-800/50"
+          class="p-2 rounded-lg lg:hidden hover:bg-gray-100/50 dark:hover:bg-gray-800/50"
           on:click={() => sidebarOpen = !sidebarOpen}
         >
           <svg class="w-6 h-6 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -191,7 +192,7 @@
 
         <h1 class="text-2xl font-semibold text-gray-900 dark:text-white">
           
-          <img src="/logo.png" alt="ImageFlow" class="w-8 h-8 inline mx-2" />
+          <img src={logo} alt="ImageFlow" class="inline w-8 h-8 mx-2" />
           <span>
             ImageFlow
           </span>
@@ -199,7 +200,7 @@
         
         <div class="flex items-center gap-3">
           <button
-            class="btn btn-secondary w-10 h-10 p-0 flex items-center justify-center"
+            class="flex items-center justify-center w-10 h-10 p-0 btn btn-secondary"
             on:click={() => darkMode.update(d => !d)}
           >
             {#if $darkMode}
@@ -211,7 +212,7 @@
           
           {#if $images.length > 0}
             <button
-              class="btn btn-secondary hidden md:block"
+              class="hidden btn btn-secondary md:block"
               on:click={processImages}
               disabled={$processing || $images.length === 0}
             >
@@ -241,9 +242,9 @@
       
       {#if $processing}
         <div class="mt-6 bg-[--content-bg] backdrop-blur-xl rounded-xl p-4 shadow-sm">
-          <div class="h-2 bg-gray-200/50 dark:bg-gray-700/50 rounded-full overflow-hidden">
+          <div class="h-2 overflow-hidden rounded-full bg-gray-200/50 dark:bg-gray-700/50">
             <div
-              class="h-full bg-primary-600/90 dark:bg-primary-500/90 transition-all duration-300"
+              class="h-full transition-all duration-300 bg-primary-600/90 dark:bg-primary-500/90"
               style="width: {progress}%"
             />
           </div>
