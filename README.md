@@ -2,6 +2,9 @@
 
 Free and opensource bulk image resizer and converter
 
+![801shots_so](https://github.com/user-attachments/assets/24f1bda4-4485-4514-86b5-40a7f5620281)
+
+
 ## Usage
 
 1. Launch the application
