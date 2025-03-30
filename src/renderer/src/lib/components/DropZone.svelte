@@ -76,7 +76,7 @@
 
 <div class="space-y-6">
   <div
-    class="border-2 border-dashed rounded-xl p-8 text-center transition-colors border-gray-300/50 dark:border-gray-700/50 bg-white/30 dark:bg-gray-800/30"
+    class="p-8 text-center transition-colors border-2 border-dashed rounded-xl border-gray-300/50 dark:border-gray-700/50 bg-white/30 dark:bg-gray-800/30"
     class:drag-active={dragActive}
     class:opacity-50={!canAddMore}
     on:dragenter={handleDragEnter}
@@ -95,7 +95,7 @@
       </div>
       
       <div>
-        <label class="btn btn-secondary inline-block cursor-pointer">
+        <label class="inline-block cursor-pointer btn btn-secondary">
           Browse Files
           <input
             type="file"
@@ -112,7 +112,7 @@
   
   {#if $images.length > 0}
     <div class="space-y-4">
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <h3 class="text-lg font-medium text-gray-800 dark:text-gray-200">
           Images ({$images.length})
         </h3>
@@ -125,23 +125,23 @@
         </button>
       </div>
       
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+      <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
         {#each $images as image}
-          <div class="relative group rounded-xl overflow-hidden bg-white/50 dark:bg-gray-800/50 shadow-sm backdrop-blur-sm">
+          <div class="relative overflow-hidden shadow-sm group rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm">
             <img
               src={image.preview}
               alt={image.originalFile.name}
-              class="w-full h-40 object-cover"
+              class="object-cover w-full h-40"
             />
             
-            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/50 to-transparent p-2">
-              <p class="text-white text-sm truncate">
+            <div class="absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-black/50 to-transparent">
+              <p class="text-sm text-white truncate">
                 {image.originalFile.name}
               </p>
             </div>
             
             <button
-              class="absolute top-2 right-2 bg-black/50 text-white w-8 h-8 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm"
+              class="absolute z-30 flex items-center justify-center w-8 h-8 text-white transition-opacity rounded-full opacity-0 top-2 right-2 bg-black/50 group-hover:opacity-100 backdrop-blur-sm"
               on:click={() => removeImage(image.id)}
               disabled={$processing}
             >
@@ -149,20 +149,20 @@
             </button>
             
             {#if image.processing}
-              <div class="absolute inset-0 bg-black/20 backdrop-blur-sm flex items-center justify-center">
-                <div class="bg-white/90 dark:bg-gray-800/90 text-primary-600 px-3 py-1 rounded-full text-sm shadow-sm">
+              <div class="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-sm">
+                <div class="px-3 py-1 text-sm rounded-full shadow-sm bg-white/90 dark:bg-gray-800/90 text-primary-600">
                   Processing...
                 </div>
               </div>
             {:else if image.processed}
-              <div class="absolute inset-0 bg-green-500/20 backdrop-blur-sm flex items-center justify-center">
-                <div class="bg-green-500/90 text-white px-3 py-1 rounded-full text-sm shadow-sm">
+              <div class="absolute inset-0 flex items-center justify-center bg-green-500/20 backdrop-blur-sm">
+                <div class="px-3 py-1 text-sm text-white rounded-full shadow-sm bg-green-500/90">
                   Done
                 </div>
               </div>
             {:else if image.error}
-              <div class="absolute inset-0 bg-red-500/20 backdrop-blur-sm flex items-center justify-center">
-                <div class="bg-red-500/90 text-white px-3 py-1 rounded-full text-sm shadow-sm">
+              <div class="absolute inset-0 flex items-center justify-center bg-red-500/20 backdrop-blur-sm">
+                <div class="px-3 py-1 text-sm text-white rounded-full shadow-sm bg-red-500/90">
                   Error
                 </div>
               </div>
