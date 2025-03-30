@@ -6,7 +6,7 @@ export interface ImageSettings {
   percentage: number;
   format: 'png' | 'jpeg' | 'webp' | 'gif' | 'tiff' | 'avif' | 'heic';
   quality: number;
-  fit: 'crop' | 'scale';
+  fit: 'cover' | 'contain' | 'fill';
   filePattern: string;
 }
 
