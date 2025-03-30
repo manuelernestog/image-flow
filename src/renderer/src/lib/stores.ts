@@ -9,7 +9,7 @@ export const imageSettings = writable<ImageSettings>({
   percentage: 100,
   format: 'webp',
   quality: 80,
-  fit: 'scale',
+  fit: 'cover',
   filePattern: '[name]'
 });
 

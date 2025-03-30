@@ -6,7 +6,7 @@ interface ProcessImageOptions {
   quality: number;
   width?: number;
   height?: number;
-  fit?: 'cover' | 'contain';
+  fit?: 'cover' | 'contain' | 'fill';
   keepOriginalDimensions: boolean;
   usePercentage: boolean;
   percentage: number;
@@ -32,7 +32,7 @@ ipcMain.handle('process-image', async (_, imageBuffer: ArrayBuffer, options: Pro
       pipeline = pipeline.resize({
         width: targetWidth,
         height: targetHeight,
-        fit: options.fit === 'crop' ? 'cover' : 'contain'
+        fit: options.fit || 'cover'
       });
     }
 
