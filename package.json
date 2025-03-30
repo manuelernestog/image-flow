@@ -26,7 +26,8 @@
     "dayjs": "^1.11.9",
     "file-saver": "^2.0.5",
     "jszip": "^3.10.1",
-    "node-machine-id": "^1.1.12"
+    "node-machine-id": "^1.1.12",
+    "sharp": "^0.33.5"
   },
   "devDependencies": {
     "@electron-toolkit/tsconfig": "^1.0.1",
