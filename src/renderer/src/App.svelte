@@ -31,60 +31,25 @@
   }
 
   async function processImage(image: File): Promise<Blob> {
-    const img = new Image();
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    
-    if (!ctx) {
-      throw new Error('Could not get canvas context');
-    }
-    
-    await new Promise((resolve, reject) => {
-      img.onload = resolve;
-      img.onerror = reject;
-      img.src = URL.createObjectURL(image);
-    });
-    
-    let targetWidth = img.width;
-    let targetHeight = img.height;
-    
-    if (!$imageSettings.keepOriginalDimensions) {
-      if ($imageSettings.usePercentage) {
-        const scale = $imageSettings.percentage / 100;
-        targetWidth = Math.round(img.width * scale);
-        targetHeight = Math.round(img.height * scale);
-      } else {
-        targetWidth = $imageSettings.width;
-        targetHeight = $imageSettings.height;
-      }
-    }
-    
-    canvas.width = targetWidth;
-    canvas.height = targetHeight;
-    
-    if ($imageSettings.fit === 'crop') {
-      const scale = Math.max(targetWidth / img.width, targetHeight / img.height);
-      const scaledWidth = img.width * scale;
-      const scaledHeight = img.height * scale;
-      const x = (targetWidth - scaledWidth) / 2;
-      const y = (targetHeight - scaledHeight) / 2;
+    try {
+      const arrayBuffer = await image.arrayBuffer();
       
-      ctx.drawImage(img, x, y, scaledWidth, scaledHeight);
-    } else {
-      ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
+      const processedBuffer = await window.api.processImage(arrayBuffer, {
+        format: $imageSettings.format,
+        quality: $imageSettings.quality,
+        width: $imageSettings.width,
+        height: $imageSettings.height,
+        fit: $imageSettings.fit,
+        keepOriginalDimensions: $imageSettings.keepOriginalDimensions,
+        usePercentage: $imageSettings.usePercentage,
+        percentage: $imageSettings.percentage
+      });
+      
+      return new Blob([processedBuffer], { type: `image/${$imageSettings.format}` });
+    } catch (error) {
+      console.error('Error processing image:', error);
+      throw error;
     }
-    
-    const blob = await new Promise<Blob>((resolve) => {
-      canvas.toBlob(
-        (blob) => resolve(blob!),
-        `image/${$imageSettings.format}`,
-        $imageSettings.quality / 100
-      );
-    });
-    
-    URL.revokeObjectURL(img.src);
-    
-    return blob;
   }
 
   async function processImages() {
