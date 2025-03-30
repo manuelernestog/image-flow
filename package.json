@@ -1,6 +1,6 @@
 {
   "name": "ImageFlow",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "ImageFlow | Free and opensource bulk image resizer and converter",
   "main": "./out/main/index.js",
   "author": "Manuel Ernesto Garcia",

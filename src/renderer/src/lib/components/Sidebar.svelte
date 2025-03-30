@@ -2,7 +2,7 @@
   import { imageSettings } from '../stores';
   import AboutModal from './AboutModal.svelte';
   
-  const formats = ['png', 'jpeg', 'webp', 'gif', 'tiff', 'avif', 'heic'];
+  const formats = ['png', 'jpeg', 'webp', 'gif', 'tiff', 'avif'];
   const fits = ['crop', 'scale'];
   
   let isAboutModalOpen = false;

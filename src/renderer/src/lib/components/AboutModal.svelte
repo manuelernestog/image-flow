@@ -30,7 +30,7 @@
       <a href="https://github.com/manuelernestog/image-flow"  target="_blank" 
       rel="noopener noreferrer" class="block text-lg font-semibold">ImageFlow</a>
       <p class="text-sm ">Free and open-source bulk image resizer and converter software</p>
-      <p class="text-xs opacity-70 ">Version 1.0</p>
+      <p class="text-xs opacity-70 ">Version 1.1.0</p>
       <p class="">Created by <a href="https://github.com/manuelernestog" class="text-primary-600 hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-400" target="_blank" rel="noopener noreferrer">Manuel Ernesto</a> </p>
       <p class="text-xs opacity-70 !mt-1">
         with ♥️ and some VibeCode :)
