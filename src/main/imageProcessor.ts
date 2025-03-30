@@ -2,7 +2,7 @@ import sharp from 'sharp';
 import { ipcMain } from 'electron';
 
 interface ProcessImageOptions {
-  format: 'png' | 'jpeg' | 'webp';
+  format: 'png' | 'jpeg' | 'webp' | 'gif' | 'tiff' | 'avif' | 'heic';
   quality: number;
   width?: number;
   height?: number;
@@ -46,6 +46,28 @@ ipcMain.handle('process-image', async (_, imageBuffer: ArrayBuffer, options: Pro
         break;
       case 'webp':
         pipeline = pipeline.webp({ quality: options.quality });
+        break;
+      case 'gif':
+        // GIF doesn't support quality option
+        pipeline = pipeline.gif();
+        break;
+      case 'tiff':
+        pipeline = pipeline.tiff({
+          quality: options.quality,
+          compression: 'lzw' // Using LZW compression for better compatibility
+        });
+        break;
+      case 'avif':
+        pipeline = pipeline.avif({
+          quality: options.quality,
+          effort: 4 // Medium encoding effort (range 0-9)
+        });
+        break;
+      case 'heic':
+        pipeline = pipeline.heif({
+          quality: options.quality,
+          compression: 'hevc' // Using HEVC compression
+        });
         break;
     }
 

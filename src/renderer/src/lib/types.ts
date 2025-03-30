@@ -4,7 +4,7 @@ export interface ImageSettings {
   keepOriginalDimensions: boolean;
   usePercentage: boolean;
   percentage: number;
-  format: 'png' | 'jpeg' | 'webp';
+  format: 'png' | 'jpeg' | 'webp' | 'gif' | 'tiff' | 'avif' | 'heic';
   quality: number;
   fit: 'crop' | 'scale';
   filePattern: string;

@@ -30,6 +30,27 @@
     }
   }
 
+  const getMimeType = (format: string) => {
+    switch (format) {
+      case 'jpeg':
+        return 'image/jpeg';
+      case 'png':
+        return 'image/png';
+      case 'webp':
+        return 'image/webp';
+      case 'gif':
+        return 'image/gif';
+      case 'tiff':
+        return 'image/tiff';
+      case 'avif':
+        return 'image/avif';
+      case 'heic':
+        return 'image/heic';
+      default:
+        return `image/${format}`;
+    }
+  };
+
   async function processImage(image: File): Promise<Blob> {
     try {
       const arrayBuffer = await image.arrayBuffer();
@@ -45,7 +66,7 @@
         percentage: $imageSettings.percentage
       });
       
-      return new Blob([processedBuffer], { type: `image/${$imageSettings.format}` });
+      return new Blob([processedBuffer], { type: getMimeType($imageSettings.format) });
     } catch (error) {
       console.error('Error processing image:', error);
       throw error;

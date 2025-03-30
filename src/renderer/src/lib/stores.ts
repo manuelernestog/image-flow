@@ -5,12 +5,12 @@ export const imageSettings = writable<ImageSettings>({
   width: 800,
   height: 600,
   keepOriginalDimensions: false,
-  usePercentage: false,
+  usePercentage: true,
   percentage: 100,
   format: 'webp',
   quality: 80,
   fit: 'scale',
-  filePattern: 'processed_[name]'
+  filePattern: '[name]'
 });
 
 export const images = writable<ProcessedImage[]>([]);
